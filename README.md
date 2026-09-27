@@ -26,7 +26,8 @@ pnpm exec vite preview --configLoader runner
 - `src/App.tsx`: branding, navigation, introductory copy, lesson themes and editorial approach.
 - `src/styles.css`: design tokens, typography, responsive layouts and reduced-motion rules.
 - `public/favicon.svg`: original typographic favicon.
-- `public/artifacts.webp` and the four individual `.webp` exhibit images: original AI-generated symbolic still life. Not a historical product photograph, screenshot, logo or authenticated artifact. Each exhibit has its own representative object illustration.
+- `src/data/images.ts`: authentic image paths, English descriptions, captions and linked source credits.
+- `public/images/`: images published by Vingroup, Grab Vietnam, VietNamNet and SAI Digital. Original text is preserved; display captions are English. Existing generated assets are unused.
 - `src/lib/search.ts`: accent-insensitive search and combined filters.
 - `src/lib/storage.ts`: proposal validation, local storage and JSON export.
 - `src/components`: accessible native dialog and proposal form.
@@ -45,3 +46,15 @@ Native HTML dialog supports focus containment, Escape, scroll locking and focus 
 
 TypeScript, ESLint, production build and five automated unit tests passed. Browser automation used headless Microsoft Edge at desktop (1440), tablet (768) and mobile (390) widths. Checks cover overflow, mobile navigation, combined filters, empty state, reset, random selection, all four dialogs, keyboard focus and Escape, scroll locking, validation, draft save/restore/export/delete and reduced motion. Storage-blocked behavior and export were also verified. Source URLs were opened during editorial review.
 
+
+## Source images
+
+The current site uses real source-published imagery, not generated replacements. Source URLs and publisher credits appear beside each image and in each story. Source publication is verified; no open reuse license or separate republication permission has been established. Attribution does not imply a license grant. The site remains owner-private.
+
+## Expanded case research
+
+Edit long-form dossiers in src/data/research.ts: timelines, paragraph-level citations, evidence distinctions and explicit unknowns. Each case has four cited sources (16 in total). src/data/exhibits.ts retains collection-card metadata, original source records and curatorial questions. Its original short story fields remain background data and are not displayed in the dossier.
+
+Research reviewed September 28, 2026. This is desk research, not interviews, internal financial analysis or a legal investigation. Moca reconciles conflicting dates against the original announcement and a December 2024 follow-up. WeFit distinguishes a reported petition from a court ruling. Adayroi distinguishes suspension from planned integration. VinSmart market commentary is attributed rather than treated as an audited cause.
+
+Six automated tests cover search, proposal validation and citation completeness. Native WebMCP and screen-reader testing remain unverified. Image source publication is verified; separate republication permission has not been established.
