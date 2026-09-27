@@ -58,3 +58,6 @@ Edit long-form dossiers in src/data/research.ts: timelines, paragraph-level cita
 Research reviewed September 28, 2026. This is desk research, not interviews, internal financial analysis or a legal investigation. Moca reconciles conflicting dates against the original announcement and a December 2024 follow-up. WeFit distinguishes a reported petition from a court ruling. Adayroi distinguishes suspension from planned integration. VinSmart market commentary is attributed rather than treated as an audited cause.
 
 Six automated tests cover search, proposal validation and citation completeness. Native WebMCP and screen-reader testing remain unverified. Image source publication is verified; separate republication permission has not been established.
+
+## Exhibit visual archives
+Each research dossier contains a three-image gallery (12 source-published images total), with descriptive captions, source links, thumbnails, previous/next controls, and full-size image links. Additional photographs show manufacturing, payments in use, service venues, historical notices and shopping interfaces. Image metadata is in `src/data/galleries.ts`; optimized local assets are in `public/images`. Source publication and attribution do not establish an open reuse license. The existing owner-only audience is preserved.

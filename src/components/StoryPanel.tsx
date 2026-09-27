@@ -1,14 +1,13 @@
 import {useEffect,useRef} from 'react';
 import {sources,curatorialNotes,type Exhibit} from '../data/exhibits';
-import {exhibitImages} from '../data/images';
+import {ExhibitGallery} from './ExhibitGallery';
 import {caseResearch,researchSources,reviewedOn,type ResearchParagraph} from '../data/research';
-import {ImageCredit} from './ImageCredit';
 const sourceLibrary={...sources,...researchSources};
 export function StoryPanel({exhibit,onClose}:{exhibit:Exhibit|null;onClose:()=>void}){
  const ref=useRef<HTMLDialogElement>(null);
  useEffect(()=>{if(!exhibit)return;const dialog=ref.current!;const previous=document.activeElement as HTMLElement;const overflow=document.body.style.overflow;dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return()=>{dialog.close();document.body.style.overflow=overflow;previous?.focus();};},[exhibit]);
  if(!exhibit)return null;
- const e=exhibit,r=caseResearch[e.id],note=curatorialNotes[e.id],art=exhibitImages[e.id];
+ const e=exhibit,r=caseResearch[e.id],note=curatorialNotes[e.id];
  const readingMinutes=Math.max(1,Math.ceil((JSON.stringify(r.sections)+JSON.stringify(r.evidence)+JSON.stringify(note)).split(/\s+/).length/200));
  const citation=(id:string)=><a key={id} className="citation" href={sourceLibrary[id].url} target="_blank" rel="noreferrer" title={`${sourceLibrary[id].title}${sourceLibrary[id].language==='Vietnamese'?' · Source in Vietnamese':''}`} aria-label={`Source ${r.sourceIds.indexOf(id)+1}: ${sourceLibrary[id].title}${sourceLibrary[id].language==='Vietnamese'?' · Source in Vietnamese':''}`}>[{r.sourceIds.indexOf(id)+1}]</a>;
  const paragraph=(p:ResearchParagraph,i:number)=><div className="research-paragraph" key={i}>{p.label&&<span className="evidence-label">{p.label}</span>}<p>{p.text} {p.sources.map(citation)}</p></div>;
@@ -16,7 +15,7 @@ export function StoryPanel({exhibit,onClose}:{exhibit:Exhibit|null;onClose:()=>v
  return <dialog ref={ref} className="story-panel" aria-labelledby="story-title" onCancel={onClose} onClick={event=>{if(event.target===ref.current)onClose();}} onKeyDown={event=>{if(event.key!=='Tab')return;const items=ref.current!.querySelectorAll<HTMLElement>('button,a[href],[tabindex="0"]');const first=items[0],last=items[items.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}}>
  <div className="panel-top"><span className="eyebrow">Research dossier / {e.accession}</span><button autoFocus onClick={onClose} aria-label="Close exhibit story">Close ×</button></div>
  <div className="panel-content"><span className="eyebrow">{e.category} · {e.eventYear}</span><h2 id="story-title">{e.title}</h2><span className="badge">{e.outcome}</span><p className="lead dossier-subtitle">{r.subtitle}</p><div className="research-meta"><span>{readingMinutes} min read</span><span>{r.sourceIds.length} sources</span><span>Reviewed {reviewedOn}</span></div>
- <figure className="story-image"><a href={art.src} target="_blank" rel="noreferrer" aria-label={`View full image of ${e.title}`}><img src={art.src} alt={art.alt}/></a><figcaption><ImageCredit image={art}/><span className="fine">Select the image to view it at full size. Original language preserved.</span></figcaption></figure>
+ <ExhibitGallery key={e.id} id={e.id} title={e.title}/>
  <aside className="research-scope"><strong>Scope of this case</strong><p>{r.scope}</p><p>Desk research from public documents and reporting. No interviews, internal records or independent audit were conducted.</p></aside>
  <div className="story-toc" role="navigation" aria-label="Case study sections">{[['ambition','Ambition'],['model','Business model'],['timeline','Timeline'],['impact','People & decisions'],['evidence','Evidence'],['reflection','Reflection'],['sources','Sources']].map(([id,label])=><button key={id} onClick={()=>jump(`case-${id}`)}>{label}</button>)}</div>
  {r.sections.map((section,i)=><section className="story-section" key={section.title}><span className="eyebrow">{i<3?`0${i+1}`:'03 / Continued'}</span><h3 id={`case-${['ambition','model','timeline','impact'][i]}`} tabIndex={-1}>{section.title}</h3>{section.paragraphs.map(paragraph)}{i===2&&<ol className="case-timeline">{r.timeline.map(event=><li key={event.date}><time>{event.date}</time><h4>{event.title}</h4><p>{event.text} {citation(event.source)}</p></li>)}</ol>}</section>)}
