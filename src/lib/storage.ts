@@ -1,0 +1,9 @@
+export interface Proposal {name:string;category:string;happened:string;reason:string;url:string;contributor:string}
+export const blankProposal:Proposal={name:'',category:'',happened:'',reason:'',url:'',contributor:''};
+const key='fabagain.proposal.v1';
+export function validUrl(value:string){try {return ['http:','https:'].includes(new URL(value).protocol);}catch{return false;}}
+export function validateProposal(p:Proposal){const errors:Partial<Record<keyof Proposal,string>>={};for(const field of ['name','category','happened','reason','url'] as const)if(!p[field].trim())errors[field]='Please complete this field.';if(p.url.trim()&&!validUrl(p.url.trim()))errors.url='Enter a complete HTTP or HTTPS source URL.';return errors;}
+export function loadDraft():{draft:Proposal|null;error?:string}{try{const raw=localStorage.getItem(key);if(!raw)return {draft:null};const value:unknown=JSON.parse(raw);if(!value||typeof value!=='object'||!Object.keys(blankProposal).every(k=>typeof (value as Record<string,unknown>)[k]==='string'))throw Error();return {draft:value as Proposal};}catch{return {draft:null,error:'A saved draft could not be read. You can still prepare and export a proposal.'};}}
+export function saveDraft(p:Proposal){try{localStorage.setItem(key,JSON.stringify(p));return 'Draft saved on this device. It has not been sent.';}catch{return 'Device storage is unavailable. Your work remains in this form; export JSON to keep it.';}}
+export function deleteDraft(){try{localStorage.removeItem(key);return true;}catch{return false;}}
+export function exportDraft(p:Proposal){const url=URL.createObjectURL(new Blob([JSON.stringify({version:1,...p},null,2)],{type:'application/json'}));const link=document.createElement('a');link.href=url;link.download='fabagain-proposal.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
