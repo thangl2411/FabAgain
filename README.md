@@ -61,3 +61,15 @@ Six automated tests cover search, proposal validation and citation completeness.
 
 ## Exhibit visual archives
 Each research dossier contains a three-image gallery (12 source-published images total), with descriptive captions, source links, thumbnails, previous/next controls, and full-size image links. Additional photographs show manufacturing, payments in use, service venues, historical notices and shopping interfaces. Image metadata is in `src/data/galleries.ts`; optimized local assets are in `public/images`. Source publication and attribution do not establish an open reuse license. The existing owner-only audience is preserved.
+
+## Exploration features (September 28, 2026)
+- Direct exhibit links use #exhibit=vsmart (also moca, wefit, adayroi); direct loads and browser Back/Forward are supported. Copy-link failure exposes a selectable URL.
+- Compare two different cases, including source-linked ambition, model, turning point, stakeholder effects, and curatorial takeaway. Selecting the same case swaps the previous selection.
+- The shared timeline has 14 dated events, per-exhibit filters, source links, and contextual imagery. March 2020 is sorted at month precision; no exact event day is claimed.
+- Four hypothetical decision activities show trade-offs and then a cited historical outcome, without scoring or claiming a preventative counterfactual.
+- Two accessible numbered annotations per primary exhibit image connect visible elements to the case research.
+- Saved exhibits and private notes use browser-local storage with JSON export, per-note clearing and entry removal. No account, server sync or transmission. Storage errors retain session content and offer export.
+- EN/VI controls translate museum navigation, dossiers, source descriptions, galleries and learning activities. Original source documents, original image text, proper names and visitor notes remain unchanged. Language preference is browser-local.
+- Claim-to-source accordions and an editorial-history entry supplement the existing evidence limits and sources. History begins with this release, not a fabricated earlier log.
+
+Nine unit tests pass, including corrupt notebook handling and bounded restoration. Browser checks cover all eight feature flows, direct routes, history, fallback clipboard, denied storage, note export/removal, bilingual persistence and unaccented Vietnamese search. Layout checked at 1440, 768 and 390 pixels. Keyboard focus wrapping includes notes, links and disclosure controls; screen-reader speech has not been manually audited.
