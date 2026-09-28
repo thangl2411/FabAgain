@@ -82,3 +82,13 @@ BAEMIN distinguishes Vietnam withdrawal from the global brand, the mid-2019 intr
 Routing and notebook restoration now resolve IDs from the exhibit registry. Category/outcome filters deduplicate their options; proposal categories, comparisons and lessons include the expanded collection. The timeline uses month-level sort anchors for mid-2019 and October 2010 without displaying invented exact event days.
 
 Ten unit tests and browser checks cover the expanded data, bilingual content, six new images, all new activities, direct links, comparison, timeline filters, note restoration and search. Layout verified at 1440, 768 and 390 pixels. Photo credits appear in each gallery; no new image reuse licence is asserted.
+
+## GitHub Pages deployment
+This React/Vite app must be built before publishing. Do not publish the source `index.html` directly: it references TypeScript that browsers cannot run as a deployed bundle.
+
+1. In GitHub, open **Settings → Pages → Build and deployment → Source**, and choose **GitHub Actions**.
+2. Push this project, including `.github/workflows/deploy-pages.yml`, to `main`.
+3. Wait for **Deploy FabAgain to GitHub Pages** in the Actions tab to succeed.
+4. Open `https://thangl2411.github.io/FabAgain/`.
+
+The workflow installs dependencies from the pnpm lockfile, compiles the app and publishes only `dist`. It reads the site's base path from GitHub Pages metadata; public image links use the same base. Ordinary local and domain-root builds keep `/`. To simulate this repository deployment in PowerShell, set `$env:PAGES_BASE_PATH='/FabAgain/'` before running the build. Clear that variable for domain-root builds.
