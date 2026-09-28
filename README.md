@@ -73,3 +73,12 @@ Each research dossier contains a three-image gallery (12 source-published images
 - Claim-to-source accordions and an editorial-history entry supplement the existing evidence limits and sources. History begins with this release, not a fabricated earlier log.
 
 Nine unit tests pass, including corrupt notebook handling and bounded restoration. Browser checks cover all eight feature flows, direct routes, history, fallback clipboard, denied storage, note export/removal, bilingual persistence and unaccented Vietnamese search. Layout checked at 1440, 768 and 390 pixels. Keyboard focus wrapping includes notes, links and disclosure controls; screen-reader speech has not been manually audited.
+
+## Collection expansion: BAEMIN Vietnam and Air Mekong
+The collection now contains six dossiers, 25 research-source records, 18 authentic source-published images, and 22 timeline entries. Added cases live in `src/data/newCases.ts`, with paired English/Vietnamese text and all supporting source, gallery, decision and annotation data.
+
+BAEMIN distinguishes Vietnam withdrawal from the global brand, the mid-2019 introduction/commercial launch descriptions, and announced settlements from verified completion. Its company farewell is a public LinkedIn source that may require platform access. Air Mekong distinguishes the 2013 flight suspension, the proposed return and the licence-revocation report in January 2015; publication dates are not substituted for exact administrative decision dates. Management interviews and supplier case studies are identified as such.
+
+Routing and notebook restoration now resolve IDs from the exhibit registry. Category/outcome filters deduplicate their options; proposal categories, comparisons and lessons include the expanded collection. The timeline uses month-level sort anchors for mid-2019 and October 2010 without displaying invented exact event days.
+
+Ten unit tests and browser checks cover the expanded data, bilingual content, six new images, all new activities, direct links, comparison, timeline filters, note restoration and search. Layout verified at 1440, 768 and 390 pixels. Photo credits appear in each gallery; no new image reuse licence is asserted.

@@ -1,3 +1,4 @@
+import {newSources,newResearch} from './newCases.ts';
 import type {Source} from './exhibits';
 
 export interface ResearchParagraph {text:string; sources:string[]; label?:string}
@@ -6,6 +7,7 @@ export interface ResearchEvent {date:string;title:string;text:string;source:stri
 export interface CaseResearch {subtitle:string;scope:string;sections:ResearchSection[];timeline:ResearchEvent[];evidence:ResearchParagraph[];unknowns:string[];takeaway:string;sourceIds:string[]}
 export const reviewedOn='September 28, 2026';
 export const researchSources:Record<string,Source>={
+...newSources,
  vsmartLaunch:{id:'vsmartLaunch',title:'Vingroup announces the first Vsmart smartphone launch',publisher:'Vingroup',date:'December 3, 2018',url:'https://www.vingroup.net/tin-tuc-su-kien/bai-viet/2010/vingroup-ra-mat-dien-thoai-thong-minh-vsmart',language:'Vietnamese',kind:'Company statement',claims:'Original industrial ambition, planned launch, BQ relationship and manufacturing approach.'},
  vsmartContext:{id:'vsmartContext',title:'The dilemma of Vietnamese smartphone brands',publisher:'VnExpress International',date:'May 17, 2021',url:'https://e.vnexpress.net/news/business/companies/the-dilemma-of-vietnamese-smartphone-brands-4279610.html',language:'English',kind:'Independent reporting',claims:'Reported component constraints, price competition and attributed industry assessments; not an audited account of VinSmart profitability.'},
  vsmartReport:{id:'vsmartReport',title:'Vingroup stops smartphone and television manufacturing',publisher:'VnExpress International',date:'May 9, 2021',url:'https://e.vnexpress.net/news/business/companies/vingroup-shuts-down-smartphone-tv-manufacturing-4275318.html',language:'English',kind:'Independent reporting',claims:'Contemporaneous reporting of the announced product-line exit; largely based on company statements.'},
@@ -21,6 +23,7 @@ export const researchSources:Record<string,Source>={
 };
 
 export const caseResearch:Record<string,CaseResearch>={
+...newResearch,
 vsmart:{
  subtitle:'When a product line ends, what happens to the capability behind it?',
  scope:'A study of the 2018 ambition and May 2021 product-line exit. It does not assess VinSmart’s current business or VinFast’s subsequent performance.',

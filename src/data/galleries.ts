@@ -1,8 +1,10 @@
+import {newGalleries} from './newCases.ts';
 import {exhibitImages,type ExhibitImage} from './images';
 export type GalleryImage=ExhibitImage&{title:string};
 const factorySource='https://www.vingroup.net/tin-tuc-su-kien/bai-viet/2010/vingroup-ra-mat-dien-thoai-thong-minh-vsmart';
 const saiSource=exhibitImages.adayroi.sourceUrl;
 export const exhibitGalleries:Record<string,GalleryImage[]>={
+...newGalleries,
  vsmart:[{...exhibitImages.vsmart,title:'The finished product'},
  {src:'/images/vsmart-factory.webp',title:'Behind the phone',alt:'A wide view of the Vsmart production floor, with rows of equipment and workers in protective clothing.',caption:'The Vsmart factory in Cát Hải, Hải Phòng, pictured in Vingroup’s December 2018 launch announcement. The production floor gives a sense of the physical infrastructure behind the handset.',publisher:'Vingroup',sourceUrl:factorySource,language:'Vietnamese',kind:'Factory photograph · 2018'},
  {src:'/images/vsmart-team.webp',title:'People and production',alt:'Two staff members examining a component beside equipment on the Vsmart factory floor.',caption:'Staff examine a component on the factory floor in a photograph accompanying the 2018 launch announcement. The source discusses VinSmart’s engineering team and collaboration with BQ.',publisher:'Vingroup',sourceUrl:factorySource,language:'Vietnamese',kind:'Manufacturing photograph · 2018'}],

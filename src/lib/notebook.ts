@@ -1,3 +1,4 @@
+import {exhibits} from '../data/exhibits.ts';
 export interface NotebookEntry {saved:boolean;note:string}
 export type Notebook=Record<string,NotebookEntry>;
 export const notebookKey='fabagain.notebook.v1';
@@ -6,7 +7,7 @@ export function parseNotebook(raw:string|null):Notebook{
  const value:unknown=JSON.parse(raw);
  if(!value||typeof value!=='object'||Array.isArray(value))throw Error('Invalid notebook');
  const result:Notebook={};
- for(const id of ['vsmart','moca','wefit','adayroi']){
+ for(const id of exhibits.map(e=>e.id)){
   const entry=(value as Record<string,unknown>)[id];if(entry===undefined)continue;
   if(!entry||typeof entry!=='object'||typeof (entry as NotebookEntry).saved!=='boolean'||typeof (entry as NotebookEntry).note!=='string')throw Error('Invalid entry');
   result[id]={saved:(entry as NotebookEntry).saved,note:(entry as NotebookEntry).note.slice(0,10000)};

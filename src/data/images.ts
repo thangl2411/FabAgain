@@ -1,6 +1,8 @@
+import {newGalleries} from './newCases.ts';
 /** Authentic source-published imagery. Attribution is not a license grant. */
 export interface ExhibitImage {src:string;alt:string;caption:string;publisher:string;sourceUrl:string;language:'English'|'Vietnamese';kind:string}
 export const exhibitImages:Record<string,ExhibitImage>={
+...Object.fromEntries(Object.entries(newGalleries).map(([id,images])=>[id,images[0]])), 
 vsmart:{src:'/images/vsmart.jpg',alt:'A turquoise Vsmart Aris Pro smartphone beside its original magenta retail box.',caption:'Vsmart Aris Pro and its retail packaging, pictured in Vingroup’s May 2021 announcement.',publisher:'Vingroup',sourceUrl:'https://vingroup.net/vi/tin-tuc-su-kien/bai-viet/2350/vinsmart-dong-mang-tivi-dien-thoai-di-dong-tap-trung-phat-trien-cong-nghe-cao-cho-vinfast',language:'Vietnamese',kind:'Product photograph'},
 moca:{src:'/images/moca.png',alt:'Grab’s source image showing the Moca wallet among payment methods on a smartphone.',caption:'The Moca wallet in Grab’s payment-method screen, as pictured in the May 2024 announcement.',publisher:'Grab Vietnam',sourceUrl:'https://www.grab.com/vn/press/others/moca-tinh-chinh-danh-muc-dich-vu-nham-gia-tang-hieu-qua-hoat-dong-huong-den-thuc-day-tang-truong-ben-vung/',language:'Vietnamese',kind:'Official service image'},
 wefit:{src:'/images/wefit.jpg',alt:'Original WeFit by WeWow promotional artwork showing the service’s branding.',caption:'WeFit by WeWow promotional artwork reproduced in VietNamNet’s reporting.',publisher:'VietNamNet',sourceUrl:'https://vietnamnet.vn/start-up-dinh-dam-viet-nam-pha-san-bi-to-no-tien-hang-tram-doi-tac-640190.html',language:'Vietnamese',kind:'Historical promotional artwork'},
