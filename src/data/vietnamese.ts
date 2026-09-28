@@ -68,3 +68,6 @@ Object.assign(vietnamese,newTranslations);
 vietnamese['Collection 01—']='Hồ sơ 01—';
 
 vietnamese['. Editorial-history dates record museum revisions, not the dates of the original events.']='. Ngày lịch sử biên tập ghi sửa đổi của bảo tàng, không phải ngày sự kiện gốc.';
+
+vietnamese['Website correspondence']='Liên hệ website';
+vietnamese['All rights reserved.']='Bảo lưu mọi quyền.';
